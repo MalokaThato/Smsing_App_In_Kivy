@@ -1,0 +1,53 @@
+<smsing>:
+    msg: msg_id
+    number: number_id
+    contacts_list: contacts_id
+    orientation: "horizontal"
+
+    BoxLayout:
+        size_hint_x: ".5dp"
+
+        canvas.before:
+            Color:
+                rgba: .2,.2,.5,1
+
+            Rectangle:
+                pos:self.pos
+                size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: ".10dp"
+            orientation: "horizontal"
+            TextInput:
+                id:number_id
+
+            Spinner:
+                id: contacts_id
+                background_color:(.5,1,0,1)
+                font_size: 18
+                text: "Contacts"
+                on_text: root.load_contacts()
+                on_release: root.load_contacts()
+                #values: ["Sample Name", "Smaple Name 2"]
+
+
+        TextInput:
+            id: msg_id
+
+        BoxLayout:
+            size_hint_y: None
+            padding: ".10dp"
+            size_hint_y: ".15dp"
+
+            Button:
+
+                #size_hint_y: ".25dp"
+                text:"Draft"
+
+            Button:
+
+                #size_hint_y: ".25dp"
+                text: "Send"
+                on_press: root.send_sms()
