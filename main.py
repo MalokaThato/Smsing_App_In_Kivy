@@ -23,9 +23,9 @@ class smsing(BoxLayout):
 
 
     def send_sms(self):
-
+        smstest.password = str(input("Please enter your winsms password: "))
         smstest.msg = self.msg.text
-        smstest.num = self.number.text
+        smstest.num = (self.number.text).replace(" ","")
         smstest.send_sms()
 
 
