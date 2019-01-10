@@ -1,8 +1,17 @@
+
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+
+
+smsing:
+
 <smsing>:
     msg: msg_id
     number: number_id
+    #draft_list_view: draft_list_view_id
     contacts_list: contacts_id
     orientation: "horizontal"
+
 
     BoxLayout:
         size_hint_x: ".5dp"
@@ -15,6 +24,13 @@
                 pos:self.pos
                 size: self.size
 
+        ListView:
+            id: create_draft
+            adapter:
+                ListAdapter(
+                data=[],
+                selection_mode='multiple',
+                cls=ListItemButton)
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
@@ -45,6 +61,7 @@
 
                 #size_hint_y: ".25dp"
                 text:"Draft"
+                on_press: root.add_draft()
 
             Button:
 

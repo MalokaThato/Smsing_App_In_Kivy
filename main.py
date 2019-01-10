@@ -3,7 +3,9 @@ import smstest
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import Property, ObjectProperty
-#
+from kivy.uix.listview import ListItemButton
+
+
 
 
 
@@ -11,6 +13,7 @@ class smsing(BoxLayout):
     msg = ObjectProperty()
     number = ObjectProperty()
     contacts_list = ObjectProperty()
+    #draft_list_view = ObjectProperty()
 
     def load_contacts(self):
 
@@ -28,6 +31,8 @@ class smsing(BoxLayout):
         smstest.num = (self.number.text).replace(" ","")
         smstest.send_sms()
 
+    def add_draft(self):
+        self.ids["create_draft"].adapter.data.append("Draft")
 
 
 
