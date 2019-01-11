@@ -1,0 +1,47 @@
+<sent_screen>:
+
+    BoxLayout:
+
+        orientation: "vertical"
+
+        canvas.before:
+            Color:
+                rgba: .2,.5,.5,1
+
+            Rectangle:
+                pos:self.pos
+                size: self.size
+
+        ActionBar:
+
+            canvas.before:
+                Color:
+                    rgba: .2,.5,.5,1
+
+                Rectangle:
+                    pos:self.pos
+                    size: self.size
+
+
+            background_color: (1,1,1,1)
+            pos_hint: {'top':1}
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    title: 'Home'
+                    with_previous: True
+                    on_press: root.to_home()
+                ActionOverflow:
+
+
+                ActionButton:
+                    icon: "icons/recieved_mail2.png"
+                    text: 'Recieved'
+
+                ActionButton:
+                    icon: "icons/contacts_icon2.png"
+                    text: 'Contacts'
+
+
+        Label:
+            text: "Sent Messages Screen"

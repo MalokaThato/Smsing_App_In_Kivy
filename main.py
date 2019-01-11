@@ -4,12 +4,18 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import Property, ObjectProperty
 from kivy.uix.listview import ListItemButton
+from time import gmtime, strftime
+from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition, CardTransition
+
+#importing screen classes
+
+from contacts import contacts_screen
+from sent_msg import sent_screen
+from recieved_msg import recieved_screen
 
 
 
-
-
-class smsing(BoxLayout):
+class smsing(Screen):
     msg = ObjectProperty()
     number = ObjectProperty()
     contacts_list = ObjectProperty()
@@ -32,14 +38,40 @@ class smsing(BoxLayout):
         smstest.send_sms()
 
     def add_draft(self):
-        self.ids["create_draft"].adapter.data.append("Draft")
+        self.ids["create_draft"].adapter.data.append(str(strftime("%Y-%m-%d %H:%M:%S", gmtime())) + "\n" + self.msg.text[:10] + "...")
+
+
+    #Functions for selecting screens
+
+    def to_contacts(self):
+        self.manager.transition = CardTransition(direction="left")
+        self.manager.current = 'contacts_screen'
+
+    def to_sent(self):
+        self.manager.transition = CardTransition(direction="right")
+        self.manager.current = 'sent_msg_screen'
+
+    def to_recieved(self):
+        self.manager.transition = CardTransition(direction="up")
+        self.manager.current = 'recieved_msg_screen'
+
+
 
 
 
 class smsingApp(App):
 
     def build(self):
-        return smsing()
+
+        manager = ScreenManager()
+
+        manager.add_widget(smsing(name="smsing_screen"))
+        manager.add_widget(contacts_screen(name='contacts_screen'))
+        manager.add_widget(sent_screen(name='sent_msg_screen'))
+        manager.add_widget(recieved_screen(name='recieved_msg_screen'))
+
+
+        return manager
 
 
 if __name__ == "__main__":

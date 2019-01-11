@@ -1,70 +1,108 @@
 
 #: import ListAdapter kivy.adapters.listadapter.ListAdapter
 #: import ListItemButton kivy.uix.listview.ListItemButton
+#: include contacts.kv
+#: include sent.kv
+#: include recieved.kv
+
 
 
 smsing:
+
+<ListItemButton>:
+    size: (100, '48dp')
 
 <smsing>:
     msg: msg_id
     number: number_id
     #draft_list_view: draft_list_view_id
     contacts_list: contacts_id
-    orientation: "horizontal"
 
-
-    BoxLayout:
-        size_hint_x: ".5dp"
-
-        canvas.before:
-            Color:
-                rgba: .2,.2,.5,1
-
-            Rectangle:
-                pos:self.pos
-                size: self.size
-
-        ListView:
-            id: create_draft
-            adapter:
-                ListAdapter(
-                data=[],
-                selection_mode='multiple',
-                cls=ListItemButton)
     BoxLayout:
         orientation: "vertical"
+
+        ActionBar:
+            background_color: (1,1,1,1)
+            pos_hint: {'top':1}
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    title: 'SMSing System'
+                    with_previous: False
+                ActionOverflow:
+
+                ActionButton:
+                    icon: "icons/sending_icon.png"
+                    important: True
+                    text: 'Sent'
+                    on_press: root.to_sent()
+
+                ActionButton:
+                    icon: "icons/recieved_mail2.png"
+                    text: 'Recieved'
+                    on_press: root.to_recieved()
+
+                ActionButton:
+                    icon: "icons/contacts_icon2.png"
+                    text: 'Contacts'
+                    on_press: root.to_contacts()
+
         BoxLayout:
-            size_hint_y: ".10dp"
             orientation: "horizontal"
-            TextInput:
-                id:number_id
 
-            Spinner:
-                id: contacts_id
-                background_color:(.5,1,0,1)
-                font_size: 18
-                text: "Contacts"
-                on_text: root.load_contacts()
-                on_release: root.load_contacts()
-                #values: ["Sample Name", "Smaple Name 2"]
+            BoxLayout:
+                size_hint_x: ".5dp"
+
+                canvas.before:
+                    Color:
+                        rgba: .2,.5,.5,1
+
+                    Rectangle:
+                        pos:self.pos
+                        size: self.size
+
+                ListView:
+                    id: create_draft
+                    adapter:
+
+                        ListAdapter(
+                        data=[],
+                        selection_mode='multiple',
+                        cls=ListItemButton)
+            BoxLayout:
+                orientation: "vertical"
+                BoxLayout:
+                    size_hint_y: ".10dp"
+                    orientation: "horizontal"
+                    TextInput:
+                        id:number_id
+
+                    Spinner:
+                        id: contacts_id
+                        background_color:(.5,1,0,1)
+                        font_size: 18
+                        text: "Contacts"
+                        on_text: root.load_contacts()
+                        on_release: root.load_contacts()
+                        #values: ["Sample Name", "Smaple Name 2"]
 
 
-        TextInput:
-            id: msg_id
+                TextInput:
+                    id: msg_id
 
-        BoxLayout:
-            size_hint_y: None
-            padding: ".10dp"
-            size_hint_y: ".15dp"
+                BoxLayout:
+                    size_hint_y: None
+                    padding: ".10dp"
+                    size_hint_y: ".15dp"
 
-            Button:
+                    Button:
 
-                #size_hint_y: ".25dp"
-                text:"Draft"
-                on_press: root.add_draft()
+                        #size_hint_y: ".25dp"
+                        text:"Draft"
+                        on_press: root.add_draft()
 
-            Button:
+                    Button:
 
-                #size_hint_y: ".25dp"
-                text: "Send"
-                on_press: root.send_sms()
+                        #size_hint_y: ".25dp"
+                        text: "Send"
+                        on_press: root.send_sms()
