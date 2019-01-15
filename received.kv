@@ -1,4 +1,4 @@
-<recieved_screen>:
+<received_screen>:
 
     BoxLayout:
 
@@ -42,6 +42,38 @@
                     icon: "icons/contacts_icon2.png"
                     text: 'Contacts'
 
+        BoxLayout:
+            size_hint_y: .1
+            pos_hint: {"top":1}
+
+            TextInput:
+                
+            Button:
+                size_hint_x: .05
+
+
+                StackLayout:
+
+                    canvas.before:
+                        Color:
+                            rgba: 1,1,1,1
+
+                        Rectangle:
+                            pos:self.pos
+                            size: self.size
+
+                    #background_color: (1,1,1,1)
+                    pos: self.parent.pos
+                    size: self.parent.size
+                    orientation: 'lr-tb'
+                    Image:
+                        source: 'icons/search.png'
+                        #size_hint_x: None
+                        #width: 74
+
+
+
+
 
         Label:
-            text: "Recieved Messages Screen"
+            text: "Received Messages Screen"

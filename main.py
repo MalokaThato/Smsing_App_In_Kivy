@@ -11,7 +11,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition, CardT
 
 from contacts import contacts_screen
 from sent_msg import sent_screen
-from recieved_msg import recieved_screen
+from received_msg import received_screen
 
 
 
@@ -51,9 +51,9 @@ class smsing(Screen):
         self.manager.transition = CardTransition(direction="right")
         self.manager.current = 'sent_msg_screen'
 
-    def to_recieved(self):
+    def to_received(self):
         self.manager.transition = CardTransition(direction="up")
-        self.manager.current = 'recieved_msg_screen'
+        self.manager.current = 'received_msg_screen'
 
 
 
@@ -68,7 +68,7 @@ class smsingApp(App):
         manager.add_widget(smsing(name="smsing_screen"))
         manager.add_widget(contacts_screen(name='contacts_screen'))
         manager.add_widget(sent_screen(name='sent_msg_screen'))
-        manager.add_widget(recieved_screen(name='recieved_msg_screen'))
+        manager.add_widget(received_screen(name='received_msg_screen'))
 
 
         return manager
