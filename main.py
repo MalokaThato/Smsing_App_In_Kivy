@@ -7,11 +7,16 @@ from kivy.uix.listview import ListItemButton
 from time import gmtime, strftime
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition, CardTransition
 
+
 #importing screen classes
 
 from contacts import contacts_screen
 from sent_msg import sent_screen
 from received_msg import received_screen
+import received_msg
+
+# import the smsing # DEBUG:
+import sms_db
 
 
 

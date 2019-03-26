@@ -1,4 +1,13 @@
+#: import ReceivedListButton received_msg
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+
+<ListItemButton>:
+    size: (100, 100)
+
 <received_screen>:
+
+    received_list: received_list_id
 
     BoxLayout:
 
@@ -36,20 +45,21 @@
 
                 ActionButton:
                     icon: "icons/recieved_mail2.png"
-                    text: 'Recieved'
+                    #text: 'Recieved'
 
                 ActionButton:
                     icon: "icons/contacts_icon2.png"
-                    text: 'Contacts'
+                    #text: 'Contacts'
 
         BoxLayout:
-            size_hint_y: .1
+            size_hint_y: .2
             pos_hint: {"top":1}
 
             TextInput:
-                
+
             Button:
                 size_hint_x: .05
+                on_press: root.submit_Rlist()
 
 
                 StackLayout:
@@ -72,8 +82,13 @@
                         #width: 74
 
 
+        TextInput:
+            text: ""
+            size_hint_y: 1.3
+            font_size: 2
 
 
-
-        Label:
-            text: "Received Messages Screen"
+        ListView:
+            id: received_list_id
+            adapter:
+                ListAdapter(data=[], cls=ListItemButton)

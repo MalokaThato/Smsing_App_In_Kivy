@@ -10,8 +10,6 @@ def send_sms():
 
 
 
-
-    
     #print (t1 + t2)
     f = fr.urlopen(accURL)
     s = f.read()
